@@ -82,13 +82,7 @@ Model(
     "repl",
     "launcher",
     "external/kafka",
-    "external/kafka-assembly",
-    "yarn",
-    "extras/kinesis-asl",
-    "extras/spark-ganglia-lgpl",
-    "extras/java8-tests",
-    "network/yarn",
-    "sql/hive-thriftserver"
+    "external/kafka-assembly"
   ),
   repositories = Seq(
     Repository(
