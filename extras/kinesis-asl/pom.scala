@@ -6,7 +6,7 @@ Model(
   name = "Spark Kinesis Integration",
   parent = Parent(
     gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
-    relativePath = "../../pom.xml"
+    relativePath = "../../pom.scala"
   ),
   dependencies = Seq(
     "org.apache.spark" % "spark-streaming_${scala.binary.version}" % "${project.version}",

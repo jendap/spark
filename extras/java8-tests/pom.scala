@@ -7,7 +7,7 @@ Model(
   name = "Spark Project Java8 Tests POM",
   parent = Parent(
     gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
-    relativePath = "../../pom.xml"
+    relativePath = "../../pom.scala"
   ),
   dependencies = Seq(
     "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",

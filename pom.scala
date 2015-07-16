@@ -1,8 +1,10 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+  "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
   packaging = "pom",
   name = "Spark Project Parent POM",
   url = "http://spark.apache.org/",
@@ -87,6 +89,7 @@ Model(
   repositories = Seq(
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -97,6 +100,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -107,6 +111,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -117,6 +122,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -127,6 +133,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -137,6 +144,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -147,6 +155,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -157,6 +166,7 @@ Model(
     ),
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -169,6 +179,7 @@ Model(
   pluginRepositories = Seq(
     Repository(
       releases = RepositoryPolicy(
+        enabled = true
       ),
       snapshots = RepositoryPolicy(
         enabled = false
@@ -179,12 +190,12 @@ Model(
   ),
   dependencies = Seq(
     "org.spark-project.spark" % "unused" % "1.0.0",
-    "org.scalatest" % "scalatest_${scala.binary.version}" % "" % "test"
+    "org.scalatest" %% "scalatest" % "" % "test"
   ),
   dependencyManagement = DependencyManagement(
     dependencies = Seq(
       Dependency(
-        "com.twitter" % "chill_${scala.binary.version}" % "${chill.version}",
+        "com.twitter" %% "chill" % "${chill.version}",
         exclusions = Seq(
           "org.ow2.asm" % "asm",
           "org.ow2.asm" % "asm-commons"
@@ -229,14 +240,14 @@ Model(
         )
       ),
       "com.google.protobuf" % "protobuf-java" % "${protobuf.version}" % "${hadoop.deps.scope}",
-      "${akka.group}" % "akka-actor_${scala.binary.version}" % "${akka.version}",
-      "${akka.group}" % "akka-remote_${scala.binary.version}" % "${akka.version}",
-      "${akka.group}" % "akka-slf4j_${scala.binary.version}" % "${akka.version}",
-      "${akka.group}" % "akka-testkit_${scala.binary.version}" % "${akka.version}",
+      "${akka.group}" %% "akka-actor" % "${akka.version}",
+      "${akka.group}" %% "akka-remote" % "${akka.version}",
+      "${akka.group}" %% "akka-slf4j" % "${akka.version}",
+      "${akka.group}" %% "akka-testkit" % "${akka.version}",
       Dependency(
-        "${akka.group}" % "akka-zeromq_${scala.binary.version}" % "${akka.version}",
+        "${akka.group}" %% "akka-zeromq" % "${akka.version}",
         exclusions = Seq(
-          "${akka.group}" % "akka-actor_${scala.binary.version}"
+          "${akka.group}" %% "akka-actor"
         )
       ),
       Dependency(
@@ -269,9 +280,9 @@ Model(
       "org.scala-lang" % "scala-library" % "${scala.version}",
       "org.scala-lang" % "scala-actors" % "${scala.version}",
       "org.scala-lang" % "scalap" % "${scala.version}",
-      "org.scalatest" % "scalatest_${scala.binary.version}" % "2.2.1" % "test",
+      "org.scalatest" %% "scalatest" % "2.2.1" % "test",
       "org.mockito" % "mockito-core" % "1.9.5" % "test",
-      "org.scalacheck" % "scalacheck_${scala.binary.version}" % "1.11.3" % "test",
+      "org.scalacheck" %% "scalacheck" % "1.11.3" % "test",
       "junit" % "junit" % "4.10" % "test",
       "org.hamcrest" % "hamcrest-core" % "1.3" % "test",
       "org.hamcrest" % "hamcrest-library" % "1.3" % "test",
@@ -603,15 +614,15 @@ Model(
               JAVA_HOME = "${test.java.home}"
             ),
             systemProperties = Config(
-              derby.system.durability = "test",
-              java.awt.headless = "true",
-              java.io.tmpdir = "${project.build.directory}/tmp",
-              spark.test.home = "${spark.test.home}",
-              spark.testing = "1",
-              spark.ui.enabled = "false",
-              spark.ui.showConsoleProgress = "false",
-              spark.driver.allowMultipleContexts = "true",
-              spark.unsafe.exceptionOnMemoryLeak = "true"
+              `derby.system.durability` = "test",
+              `java.awt.headless` = "true",
+              `java.io.tmpdir` = "${project.build.directory}/tmp",
+              `spark.test.home` = "${spark.test.home}",
+              `spark.testing` = "1",
+              `spark.ui.enabled` = "false",
+              `spark.ui.showConsoleProgress` = "false",
+              `spark.driver.allowMultipleContexts` = "true",
+              `spark.unsafe.exceptionOnMemoryLeak` = "true"
             ),
             failIfNoTests = "false"
           )
@@ -637,15 +648,15 @@ Model(
               JAVA_HOME = "${test.java.home}"
             ),
             systemProperties = Config(
-              derby.system.durability = "test",
-              java.awt.headless = "true",
-              java.io.tmpdir = "${project.build.directory}/tmp",
-              spark.test.home = "${spark.test.home}",
-              spark.testing = "1",
-              spark.ui.enabled = "false",
-              spark.ui.showConsoleProgress = "false",
-              spark.driver.allowMultipleContexts = "true",
-              spark.unsafe.exceptionOnMemoryLeak = "true"
+              `derby.system.durability` = "test",
+              `java.awt.headless` = "true",
+              `java.io.tmpdir` = "${project.build.directory}/tmp",
+              `spark.test.home` = "${spark.test.home}",
+              `spark.testing` = "1",
+              `spark.ui.enabled` = "false",
+              `spark.ui.showConsoleProgress` = "false",
+              `spark.driver.allowMultipleContexts` = "true",
+              `spark.unsafe.exceptionOnMemoryLeak` = "true"
             )
           )
         ),
