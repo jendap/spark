@@ -268,7 +268,7 @@ Model(
       "io.dropwizard.metrics" % "metrics-graphite" % "${codahale.metrics.version}",
       "com.fasterxml.jackson.core" % "jackson-databind" % "${fasterxml.jackson.version}",
       Dependency(
-        "com.fasterxml.jackson.module" % "jackson-module-scala_2.10" % "${fasterxml.jackson.version}",
+        "com.fasterxml.jackson.module" %% "jackson-module-scala" % "${fasterxml.jackson.version}",
         exclusions = Seq(
           "com.google.guava" % "guava"
         )

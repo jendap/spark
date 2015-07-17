@@ -1,22 +1,24 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-hive_2.10",
+  "org.apache.spark" %% "spark-hive",
   name = "Spark Project Hive",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-core" % "${project.version}",
     Dependency(
-      "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-core" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     ),
-    "org.apache.spark" % "spark-sql_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-sql" % "${project.version}",
     "${hive.group}" % "hive-metastore" % "",
     "commons-httpclient" % "commons-httpclient" % "3.1",
     "${hive.group}" % "hive-exec" % "",
@@ -28,15 +30,15 @@ Model(
       "org.apache.avro" % "avro-mapred",
       classifier = "${avro.mapred.classifier}"
     ),
-    "org.scalacheck" % "scalacheck_${scala.binary.version}" % "" % "test",
+    "org.scalacheck" %% "scalacheck" % "" % "test",
     "junit" % "junit" % "" % "test",
     Dependency(
-      "org.apache.spark" % "spark-sql_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-sql" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     ),
     Dependency(
-      "org.apache.spark" % "spark-catalyst_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-catalyst" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     )

@@ -1,12 +1,14 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-launcher_2.10",
+  "org.apache.spark" %% "spark-launcher",
   name = "Spark Project Launcher",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../pom.scala"
   ),
   dependencies = Seq(

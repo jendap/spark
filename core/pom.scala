@@ -1,18 +1,20 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-core_2.10",
+  "org.apache.spark" %% "spark-core",
   name = "Spark Project Core",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../pom.scala"
   ),
   dependencies = Seq(
     "com.google.guava" % "guava" % "",
     Dependency(
-      "com.twitter" % "chill_${scala.binary.version}",
+      "com.twitter" %% "chill",
       exclusions = Seq(
         "org.ow2.asm" % "asm",
         "org.ow2.asm" % "asm-commons"
@@ -26,10 +28,10 @@ Model(
       )
     ),
     "org.apache.hadoop" % "hadoop-client" % "",
-    "org.apache.spark" % "spark-launcher_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-network-common_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-network-shuffle_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-unsafe_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-launcher" % "${project.version}",
+    "org.apache.spark" %% "spark-network-common" % "${project.version}",
+    "org.apache.spark" %% "spark-network-shuffle" % "${project.version}",
+    "org.apache.spark" %% "spark-unsafe" % "${project.version}",
     "net.java.dev.jets3t" % "jets3t" % "",
     "org.apache.curator" % "curator-recipes" % "",
     "org.eclipse.jetty" % "jetty-plus" % "" % "compile",
@@ -53,11 +55,11 @@ Model(
     "net.jpountz.lz4" % "lz4" % "",
     "org.roaringbitmap" % "RoaringBitmap" % "",
     "commons-net" % "commons-net" % "",
-    "${akka.group}" % "akka-remote_${scala.binary.version}" % "",
-    "${akka.group}" % "akka-slf4j_${scala.binary.version}" % "",
-    "${akka.group}" % "akka-testkit_${scala.binary.version}" % "" % "test",
+    "${akka.group}" %% "akka-remote" % "",
+    "${akka.group}" %% "akka-slf4j" % "",
+    "${akka.group}" %% "akka-testkit" % "" % "test",
     "org.scala-lang" % "scala-library" % "",
-    "org.json4s" % "json4s-jackson_${scala.binary.version}" % "3.2.10",
+    "org.json4s" %% "json4s-jackson" % "3.2.10",
     "com.sun.jersey" % "jersey-server" % "",
     "com.sun.jersey" % "jersey-core" % "",
     Dependency(
@@ -71,7 +73,7 @@ Model(
     "io.dropwizard.metrics" % "metrics-json" % "",
     "io.dropwizard.metrics" % "metrics-graphite" % "",
     "com.fasterxml.jackson.core" % "jackson-databind" % "",
-    "com.fasterxml.jackson.module" % "jackson-module-scala_2.10" % "",
+    "com.fasterxml.jackson.module" %% "jackson-module-scala" % "",
     "org.apache.derby" % "derby" % "" % "test",
     "org.apache.ivy" % "ivy" % "",
     "oro" % "oro" % "${oro.version}",
@@ -101,7 +103,7 @@ Model(
     "org.hamcrest" % "hamcrest-core" % "" % "test",
     "org.hamcrest" % "hamcrest-library" % "" % "test",
     "org.mockito" % "mockito-core" % "" % "test",
-    "org.scalacheck" % "scalacheck_${scala.binary.version}" % "" % "test",
+    "org.scalacheck" %% "scalacheck" % "" % "test",
     "junit" % "junit" % "" % "test",
     "com.novocode" % "junit-interface" % "" % "test",
     Dependency(

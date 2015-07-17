@@ -1,24 +1,26 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "java8-tests_2.10",
+  "org.apache.spark" %% "java8-tests",
   packaging = "pom",
   name = "Spark Project Java8 Tests POM",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-core" % "${project.version}",
     Dependency(
-      "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-core" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     ),
-    "org.apache.spark" % "spark-streaming_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-streaming" % "${project.version}",
     Dependency(
-      "org.apache.spark" % "spark-streaming_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-streaming" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     ),

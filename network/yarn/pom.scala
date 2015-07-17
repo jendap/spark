@@ -1,16 +1,18 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-network-yarn_2.10",
+  "org.apache.spark" %% "spark-network-yarn",
   name = "Spark Project YARN Shuffle Service",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-network-shuffle_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-network-shuffle" % "${project.version}",
     "org.apache.hadoop" % "hadoop-client" % ""
   ),
   properties = Map(

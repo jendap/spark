@@ -1,31 +1,33 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-examples_2.10",
+  "org.apache.spark" %% "spark-examples",
   name = "Spark Project Examples",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}" % "provided",
-    "org.apache.spark" % "spark-streaming_${scala.binary.version}" % "${project.version}" % "provided",
-    "org.apache.spark" % "spark-mllib_${scala.binary.version}" % "${project.version}" % "provided",
-    "org.apache.spark" % "spark-bagel_${scala.binary.version}" % "${project.version}" % "provided",
-    "org.apache.spark" % "spark-hive_${scala.binary.version}" % "${project.version}" % "provided",
-    "org.apache.spark" % "spark-graphx_${scala.binary.version}" % "${project.version}" % "provided",
-    "org.apache.spark" % "spark-streaming-twitter_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-streaming-flume_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-streaming-mqtt_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-core" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-streaming" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-mllib" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-bagel" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-hive" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-graphx" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-streaming-twitter" % "${project.version}",
+    "org.apache.spark" %% "spark-streaming-flume" % "${project.version}",
+    "org.apache.spark" %% "spark-streaming-mqtt" % "${project.version}",
     Dependency(
-      "org.apache.spark" % "spark-streaming-zeromq_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-streaming-zeromq" % "${project.version}",
       exclusions = Seq(
         "org.spark-project.protobuf" % "protobuf-java"
       )
     ),
-    "org.apache.spark" % "spark-streaming-kafka_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-streaming-kafka" % "${project.version}",
     Dependency(
       "org.apache.hbase" % "hbase-testing-util" % "${hbase.version}",
       scope = "${hbase.deps.scope}",
@@ -79,8 +81,8 @@ Model(
       scope = "test"
     ),
     "org.apache.commons" % "commons-math3" % "" % "provided",
-    "com.twitter" % "algebird-core_${scala.binary.version}" % "0.9.0",
-    "org.scalacheck" % "scalacheck_${scala.binary.version}" % "" % "test",
+    "com.twitter" %% "algebird-core" % "0.9.0",
+    "org.scalacheck" %% "scalacheck" % "" % "test",
     Dependency(
       "org.apache.cassandra" % "cassandra-all" % "1.2.6",
       exclusions = Seq(
@@ -99,7 +101,7 @@ Model(
         "org.apache.thrift" % "libthrift"
       )
     ),
-    "com.github.scopt" % "scopt_${scala.binary.version}" % "3.2.0",
+    "com.github.scopt" %% "scopt" % "3.2.0",
     "org.scala-lang" % "scala-library" % "" % "provided"
   ),
   properties = Map(
@@ -162,7 +164,7 @@ Model(
     Profile(
       id = "kinesis-asl",
       dependencies = Seq(
-        "org.apache.spark" % "spark-streaming-kinesis-asl_${scala.binary.version}" % "${project.version}"
+        "org.apache.spark" %% "spark-streaming-kinesis-asl" % "${project.version}"
       )
     ),
     Profile(

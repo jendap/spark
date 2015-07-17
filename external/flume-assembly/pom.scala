@@ -1,23 +1,25 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-streaming-flume-assembly_2.10",
+  "org.apache.spark" %% "spark-streaming-flume-assembly",
   name = "Spark Project External Flume Assembly",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../../pom.scala"
   ),
   dependencies = Seq(
     Dependency(
-      "org.apache.spark" % "spark-streaming-flume_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-streaming-flume" % "${project.version}",
       exclusions = Seq(
         "org.mortbay.jetty" % "jetty",
         "org.mortbay.jetty" % "jetty-util"
       )
     ),
-    "org.apache.spark" % "spark-streaming_${scala.binary.version}" % "${project.version}" % "provided",
+    "org.apache.spark" %% "spark-streaming" % "${project.version}" % "provided",
     "commons-codec" % "commons-codec" % "" % "provided",
     "commons-net" % "commons-net" % "" % "provided",
     "com.google.protobuf" % "protobuf-java" % "" % "provided",

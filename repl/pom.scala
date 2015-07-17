@@ -1,28 +1,30 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-repl_2.10",
+  "org.apache.spark" %% "spark-repl",
   name = "Spark Project REPL",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-core" % "${project.version}",
     Dependency(
-      "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-core" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     ),
-    "org.apache.spark" % "spark-bagel_${scala.binary.version}" % "${project.version}" % "runtime",
-    "org.apache.spark" % "spark-mllib_${scala.binary.version}" % "${project.version}" % "runtime",
-    "org.apache.spark" % "spark-sql_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-bagel" % "${project.version}" % "runtime",
+    "org.apache.spark" %% "spark-mllib" % "${project.version}" % "runtime",
+    "org.apache.spark" %% "spark-sql" % "${project.version}",
     "org.scala-lang" % "scala-compiler" % "${scala.version}",
     "org.scala-lang" % "scala-reflect" % "${scala.version}",
     "org.slf4j" % "jul-to-slf4j" % "",
-    "org.scalacheck" % "scalacheck_${scala.binary.version}" % "" % "test",
+    "org.scalacheck" %% "scalacheck" % "" % "test",
     "org.mockito" % "mockito-core" % "" % "test",
     "org.eclipse.jetty" % "jetty-server" % "",
     "org.eclipse.jetty" % "jetty-plus" % "",

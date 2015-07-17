@@ -1,17 +1,19 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-yarn_2.10",
+  "org.apache.spark" %% "spark-yarn",
   name = "Spark Project YARN",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+    "org.apache.spark" %% "spark-core" % "${project.version}",
     Dependency(
-      "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
+      "org.apache.spark" %% "spark-core" % "${project.version}",
       `type` = "test-jar",
       scope = "test"
     ),

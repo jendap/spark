@@ -1,23 +1,25 @@
 import org.sonatype.maven.polyglot.scala.model._
 import scala.collection.immutable.Seq
 
+implicit val scalaVersion = ScalaVersion(System.getProperty("foo", "2.10.5"))
+
 Model(
-  "org.apache.spark" % "spark-assembly_2.10",
+  "org.apache.spark" %% "spark-assembly",
   packaging = "pom",
   name = "Spark Project Assembly",
   url = "http://spark.apache.org/",
   parent = Parent(
-    gav = "org.apache.spark" % "spark-parent_2.10" % "1.5.0-SNAPSHOT",
+    gav = "org.apache.spark" %% "spark-parent" % "1.5.0-SNAPSHOT",
     relativePath = "../pom.scala"
   ),
   dependencies = Seq(
-    "org.apache.spark" % "spark-core_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-bagel_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-mllib_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-streaming_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-graphx_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-sql_${scala.binary.version}" % "${project.version}",
-    "org.apache.spark" % "spark-repl_${scala.binary.version}" % "${project.version}"
+    "org.apache.spark" %% "spark-core" % "${project.version}",
+    "org.apache.spark" %% "spark-bagel" % "${project.version}",
+    "org.apache.spark" %% "spark-mllib" % "${project.version}",
+    "org.apache.spark" %% "spark-streaming" % "${project.version}",
+    "org.apache.spark" %% "spark-graphx" % "${project.version}",
+    "org.apache.spark" %% "spark-sql" % "${project.version}",
+    "org.apache.spark" %% "spark-repl" % "${project.version}"
   ),
   properties = Map(
     "spark.jar.basename" -> "spark-assembly-${project.version}-hadoop${hadoop.version}.jar",
@@ -126,25 +128,25 @@ Model(
     Profile(
       id = "yarn",
       dependencies = Seq(
-        "org.apache.spark" % "spark-yarn_${scala.binary.version}" % "${project.version}"
+        "org.apache.spark" %% "spark-yarn" % "${project.version}"
       )
     ),
     Profile(
       id = "hive",
       dependencies = Seq(
-        "org.apache.spark" % "spark-hive_${scala.binary.version}" % "${project.version}"
+        "org.apache.spark" %% "spark-hive" % "${project.version}"
       )
     ),
     Profile(
       id = "hive-thriftserver",
       dependencies = Seq(
-        "org.apache.spark" % "spark-hive-thriftserver_${scala.binary.version}" % "${project.version}"
+        "org.apache.spark" %% "spark-hive-thriftserver" % "${project.version}"
       )
     ),
     Profile(
       id = "spark-ganglia-lgpl",
       dependencies = Seq(
-        "org.apache.spark" % "spark-ganglia-lgpl_${scala.binary.version}" % "${project.version}"
+        "org.apache.spark" %% "spark-ganglia-lgpl" % "${project.version}"
       )
     ),
     Profile(
